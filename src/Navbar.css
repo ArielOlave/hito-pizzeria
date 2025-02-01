@@ -1,0 +1,15 @@
+.btn1 {
+  border-color: white;
+  border: 1px solid;
+  border-radius: 5%;
+  color: white;
+}
+.btn2 {
+  border-color: rgb(4, 168, 249);
+  color: rgb(4, 168, 249);
+  border: 1px solid;
+  border-radius: 5%;
+}
+.btn2:hover {
+  color: white;
+}

@@ -1,0 +1,8 @@
+.fondo {
+  background-image: url(./assets/Header.jpg);
+  width: 100% !important;
+  height: 40vh;
+  margin: 0px;
+  border: 0px;
+  color: white;
+}
