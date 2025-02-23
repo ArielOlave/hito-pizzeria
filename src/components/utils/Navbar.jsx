@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar, NavbarBrand } from "react-bootstrap";
-import "./Navbar.css";
+import "../styles/Navbar.css";
 const profile = document.getElementById("Profile");
 const logout = document.getElementById("Logout");
 const login = document.getElementById("Login");

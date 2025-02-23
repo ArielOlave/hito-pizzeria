@@ -1,5 +1,5 @@
 import Header from "./Header";
-import Producto from "./CardPizza";
+import Producto from "../utils/CardPizza";
 const Home = () => {
   return (
     <>
