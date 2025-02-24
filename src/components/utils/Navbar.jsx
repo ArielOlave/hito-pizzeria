@@ -1,5 +1,7 @@
 import { Container, Nav, Navbar, NavbarBrand } from "react-bootstrap";
 import "../styles/Navbar.css";
+import Register from "./Register";
+import Login from "./Login";
 const profile = document.getElementById("Profile");
 const logout = document.getElementById("Logout");
 const login = document.getElementById("Login");
@@ -34,13 +36,8 @@ const Menu = () => {
               <Nav.Link className="btn1 d-none" id="Logout" href="#Logout">
                 Logout
               </Nav.Link>
-
-              <Nav.Link className="btn1" id="Login" href="#Login">
-                Login
-              </Nav.Link>
-              <Nav.Link className="btn1" id="Register" href="#Register">
-                Register
-              </Nav.Link>
+              <Login></Login>
+              <Register></Register>
             </Nav>
 
             <Nav.Link className="justify-content-end btn2" href="#total">
