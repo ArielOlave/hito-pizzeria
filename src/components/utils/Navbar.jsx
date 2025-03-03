@@ -2,6 +2,7 @@ import { Container, Nav, Navbar, NavbarBrand } from "react-bootstrap";
 import "../styles/Navbar.css";
 import Register from "./Register";
 import Login from "./Login";
+import Cart from "./Cart";
 const profile = document.getElementById("Profile");
 const logout = document.getElementById("Logout");
 const login = document.getElementById("Login");
@@ -40,9 +41,7 @@ const Menu = () => {
               <Register></Register>
             </Nav>
 
-            <Nav.Link className="justify-content-end btn2" href="#total">
-              Total:{total}
-            </Nav.Link>
+            <Cart></Cart>
           </Navbar.Collapse>
         </Container>
       </Navbar>

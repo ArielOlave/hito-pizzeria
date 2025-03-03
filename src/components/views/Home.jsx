@@ -1,10 +1,10 @@
 import Header from "./Header";
-import Producto from "../utils/CardPizza";
+import CardPizza from "../utils/CardPizza";
 const Home = () => {
   return (
     <>
       <Header></Header>
-      <Producto></Producto>
+      <CardPizza></CardPizza>
     </>
   );
 };

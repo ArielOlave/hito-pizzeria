@@ -1,43 +1,49 @@
-import CardPizza from "./Producto";
-import { Container, Row } from "react-bootstrap";
+import {
+  ListGroupItem,
+  Card,
+  ListGroup,
+  Col,
+  Row,
+  Container,
+} from "react-bootstrap";
+import { pizzas } from "./Pizzas";
+import { useState } from "react";
 
-const Producto = () => {
+const CardPizza = (Props) => {
+  const [listapizzas, setListapizzas] = useState(pizzas);
   return (
     <>
       <Container className="p-2">
         <Row className="text-center mx-auto">
-          <CardPizza
-            name="Napolitana"
-            price={5950}
-            ingredients={["mozzarella, ", "tomates, ", "jamón, ", "orégano"]}
-            img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.co
-m/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9
-080-784dcc87ec2c"
-          />
-          <CardPizza
-            name="Española"
-            price={6950}
-            ingredients={[
-              "mozzarella, ",
-              "gorgonzola, ",
-              "parmesano, ",
-              "provolone",
-            ]}
-            img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.co
-m/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-
-a1c6-8c57bc388fab"
-          />
-          <CardPizza
-            name="Pepperoni"
-            price={6950}
-            ingredients={["mozzarella, ", "pepperoni, ", "orégano"]}
-            img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.co
-m/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-
-ac54-90f6c31eb3e3"
-          />
+          {listapizzas.map((pizza) => (
+            <Col
+              className="col-3 col-lg-4 col-md-4 col-sm-12 col-xs-8 col-8 "
+              key={pizza.id}
+            >
+              <Card>
+                <Card.Img src={pizza.img} style={{ padding: "5%" }}></Card.Img>
+                <Card.Body>
+                  <Card.Title>{pizza.name}</Card.Title>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                  <ListGroupItem>
+                    <h6>
+                      Ingredientes: <br />
+                    </h6>
+                    {pizza.ingredients}
+                  </ListGroupItem>
+                  <ListGroupItem>Precio : ${pizza.prices}</ListGroupItem>
+                </ListGroup>
+                <Card.Body>
+                  <Card.Link>Boton comprar</Card.Link>
+                  <Card.Link>Boton ver mas</Card.Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </Container>
     </>
   );
 };
-export default Producto;
+export default CardPizza;
