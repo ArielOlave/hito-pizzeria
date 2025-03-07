@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CardPizza from "./CardPizza";
 const Pizza = () => {
   const [pizza, setPizza] = useState({});
   useEffect(() => {
@@ -9,15 +10,7 @@ const Pizza = () => {
   }, []);
   return (
     <>
-      <div>
-        <h1>{pizza.name}</h1>
-        <p>{pizza.price}</p>
-        <p>{pizza.ingredients}</p>
-
-        <img src={pizza.img} alt={pizza.name} />
-        <p>{pizza.desc}</p>
-        <button> Añadir al carrito</button>
-      </div>
+      <CardPizza listapizzas={[pizza]}></CardPizza>
     </>
   );
 };
