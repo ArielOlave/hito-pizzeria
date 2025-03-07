@@ -1,15 +1,13 @@
 import { Container, Nav, Navbar, NavbarBrand } from "react-bootstrap";
 import "../styles/Navbar.css";
-import Register from "./Register";
-import Login from "./Login";
-import Cart from "./Cart";
+import PreviewCart from "./previewCart";
+import { Link } from "react-router-dom";
 const profile = document.getElementById("Profile");
 const logout = document.getElementById("Logout");
 const login = document.getElementById("Login");
 const register = document.getElementById("Register");
 
 const Menu = () => {
-  const total = 25000;
   const token = false;
 
   if (token) {
@@ -23,25 +21,59 @@ const Menu = () => {
     <>
       <Navbar expand="lg" bg="dark" data-bs-theme="dark">
         <Container>
-          <NavbarBrand href="#">Pizzeria Mamma Mia!</NavbarBrand>
+          <NavbarBrand>
+            <Link className="text-decoration-none text-white" to="/">
+              Pizzeria Mamma Mia!
+            </Link>
+          </NavbarBrand>
           <Navbar.Toggle aria-controls="collapse-navbar" />
           <Navbar.Collapse id="collapse-navbar">
             <Nav className="me-auto">
-              <Nav.Link className="btn1 " href="#Home">
+              <Nav.Link
+                className="text-decoration-none text-white"
+                to="/"
+                as={Link}
+              >
                 Home
               </Nav.Link>
 
-              <Nav.Link className="btn1 d-none" id="Profile" href="#Profile">
+              <Nav.Link
+                className="btn1 d-none"
+                to="/profile"
+                as={Link}
+                id="Profile"
+              >
                 Profile
               </Nav.Link>
-              <Nav.Link className="btn1 d-none" id="Logout" href="#Logout">
+
+              <Nav.Link
+                className="btn1 d-none"
+                to="/logout"
+                as={Link}
+                id="Logout"
+              >
                 Logout
               </Nav.Link>
-              <Login></Login>
-              <Register></Register>
-            </Nav>
 
-            <Cart></Cart>
+              <Nav.Link
+                className="text-decoration-none text-white"
+                to="/login"
+                as={Link}
+                id="Login"
+              >
+                Login
+              </Nav.Link>
+
+              <Nav.Link
+                className="text-decoration-none text-white"
+                to="/register"
+                as={Link}
+                id="Register"
+              >
+                Registrar
+              </Nav.Link>
+            </Nav>
+            <PreviewCart></PreviewCart>
           </Navbar.Collapse>
         </Container>
       </Navbar>

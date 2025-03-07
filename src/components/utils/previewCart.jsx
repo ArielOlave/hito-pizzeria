@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Button, Offcanvas, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Offcanvas, Nav } from "react-bootstrap";
 import { pizzas } from "./Pizzas";
-const Carrito = () => {
+import { Link } from "react-router-dom";
+const PreviewCart = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -40,15 +41,21 @@ const Carrito = () => {
   );
   return (
     <>
-      <Button
-        variant="primary"
-        className="btn1"
+      <Nav.Link
         id="Cart"
-        href="#Cart"
+        className="text-decoration-none text-white"
         onClick={handleShow}
       >
-        Carrito
-      </Button>
+        Vista previa /{" "}
+      </Nav.Link>
+      <Link
+        to="/cart"
+        className="text-white text-decoration-none"
+        as={Link}
+        onClick={handleClose}
+      >
+        Ver carrito
+      </Link>
 
       <Offcanvas placement="end" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
@@ -76,12 +83,22 @@ const Carrito = () => {
               </li>
             ))}
           </ul>
-          <h2>
-            <strong>Total : {total} </strong>
-          </h2>
+          <div className="offcanvas-footer">
+            <span>
+              <strong>Total : {total} </strong>
+            </span>
+            <Link
+              className="btn btn-primary"
+              to="/cart"
+              as={Link}
+              onClick={handleClose}
+            >
+              Ver carrito
+            </Link>
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
     </>
   );
 };
-export default Carrito;
+export default PreviewCart;

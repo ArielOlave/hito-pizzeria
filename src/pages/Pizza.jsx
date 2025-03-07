@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import CardPizza from "./CardPizza";
+import CardPizza from "../components/utils/Cardpizza";
 const Pizza = () => {
   const [pizza, setPizza] = useState({});
   useEffect(() => {

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal, Form } from "react-bootstrap";
-import "../styles/Navbar.css";
+import { Link } from "react-router-dom";
 const Register = () => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,18 +31,16 @@ const Register = () => {
   }
   return (
     <>
-      <a
-        className="btn1 nav-link"
-        id="Register"
-        variant="primary"
-        onClick={handleShow}
+      <Modal
+        style={{ position: "relative" }}
+        show={show}
+        backdrop="static"
+        onHide={handleClose}
       >
-        Registrar
-      </a>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Registro</Modal.Title>
+
+          <Link to="/" className="btn-close"></Link>
         </Modal.Header>
         <Modal.Body>
           <form>
@@ -71,7 +69,7 @@ const Register = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" to="/" as={Link}>
             Cerrar
           </Button>
           <Button variant="primary" type="submit" onClick={handleSumbit}>
