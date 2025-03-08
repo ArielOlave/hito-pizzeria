@@ -2,9 +2,6 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { pizzas } from "../components/utils/Pizzas";
 const Carrito = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const [listacarrito, setlistacarrito] = useState(pizzas);
 
   const agregarpizza = (pizza) => {
