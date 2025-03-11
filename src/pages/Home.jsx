@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { pizzas } from "../components/utils/Pizzas";
 import axios from "axios";
-const Home = () => {
+const Home = ({ agregarpizza }) => {
   const [listapizzas, setListapizzas] = useState(pizzas);
   const obtenerPizzas = async () => {
     try {
@@ -23,7 +23,10 @@ const Home = () => {
     <>
       <Container className="p-2">
         <Row className="text-center mx-auto">
-          <CardPizza listapizzas={listapizzas}></CardPizza>
+          <CardPizza
+            listapizzas={listapizzas}
+            agregarpizza={agregarpizza}
+          ></CardPizza>
         </Row>
       </Container>
     </>

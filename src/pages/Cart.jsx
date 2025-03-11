@@ -1,40 +1,6 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { pizzas } from "../components/utils/Pizzas";
-const Carrito = () => {
-  const [listacarrito, setlistacarrito] = useState(pizzas);
-
-  const agregarpizza = (pizza) => {
-    const nuevalista = [...listacarrito];
-    const index = nuevalista.findIndex((el) => el.id === pizza.id);
-    nuevalista[index].cantidad = nuevalista[index].cantidad + 1;
-    setlistacarrito(nuevalista);
-  };
-  const restarpizza = (pizza) => {
-    const nuevalista = [...listacarrito];
-    const index = nuevalista.findIndex((el) => el.id === pizza.id);
-    if (nuevalista[index].cantidad > 1) {
-      nuevalista[index].cantidad = nuevalista[index].cantidad - 1;
-      setlistacarrito(nuevalista);
-      return;
-    } else {
-      eliminarpizza(nuevalista[index]);
-      return;
-    }
-  };
-  const eliminarpizza = (pizza) => {
-    if (confirm("¿Desea eliminar la pizza del carrito?")) {
-      const nuevalista = listacarrito.filter((el) => el.id !== pizza.id);
-      setlistacarrito(nuevalista);
-      return true;
-    } else {
-      return false;
-    }
-  };
-  const total = listacarrito.reduce(
-    (acc, el) => acc + el.prices * el.cantidad,
-    0
-  );
+const Carrito = ({ listacarrito, agregarpizza, restarpizza, total }) => {
   return (
     <>
       <Container>
