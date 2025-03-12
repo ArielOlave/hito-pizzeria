@@ -14,7 +14,7 @@ const PreviewCart = () => {
         className="text-decoration-none text-white"
         onClick={handleShow}
       >
-        Vista previa {total}/{" "}
+        Vista previa $ {total} /
       </Nav.Link>
       <Link
         to="/cart"
