@@ -9,7 +9,6 @@ const register = document.getElementById("Register");
 
 const Menu = () => {
   const token = false;
-
   if (token) {
     profile.classList.remove("d-none");
     logout.classList.remove("d-none");

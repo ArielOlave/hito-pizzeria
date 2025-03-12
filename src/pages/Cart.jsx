@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-const Carrito = ({ listacarrito, agregarpizza, restarpizza, total }) => {
+import { usarCart } from "../context/cartContext";
+const Carrito = () => {
+  const { listacarrito, agregarpizza, restarpizza, total } = usarCart();
   return (
     <>
       <Container>
@@ -15,7 +17,7 @@ const Carrito = ({ listacarrito, agregarpizza, restarpizza, total }) => {
                     style={{ height: "50px" }}
                     alt={pizza.name}
                   />
-                  {pizza.name} - ${pizza.prices * pizza.cantidad} - <br />
+                  {pizza.name} - ${pizza.price * pizza.cantidad} - <br />
                   <a onClick={() => agregarpizza(pizza)}>
                     <i className="bi bi-plus-lg primary"></i>
                   </a>

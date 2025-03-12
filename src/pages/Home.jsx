@@ -1,23 +1,10 @@
 import CardPizza from "../components/utils/Cardpizza";
-import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
-import { pizzas } from "../components/utils/Pizzas";
-import axios from "axios";
-const Home = ({ agregarpizza }) => {
-  const [listapizzas, setListapizzas] = useState(pizzas);
-  const obtenerPizzas = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/pizzas");
-      const data = await response.data;
-      setListapizzas(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    obtenerPizzas();
-  }, []);
+import { usarCart } from "../context/cartContext";
+import { usarFetch } from "../context/fetchHomePizzaContext";
+const Home = () => {
+  const { agregarpizza } = usarCart();
+  const { listapizzas } = usarFetch();
 
   return (
     <>
