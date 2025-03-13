@@ -16,9 +16,12 @@ export const PizzasProvider = ({ children }) => {
       console.log(error);
     }
   };
-  const obtenerPizza = async () => {
+  const obtenerPizza = async (id) => {
+    console.log(id);
     try {
-      const response = await axios.get("http://localhost:5000/api/pizzas/p001");
+      const response = await axios.get(
+        `http://localhost:5000/api/pizzas/${id}`
+      );
       const data = await response.data;
       setPizza(data);
     } catch (error) {
@@ -27,7 +30,6 @@ export const PizzasProvider = ({ children }) => {
   };
   useEffect(() => {
     obtenerPizzas();
-    obtenerPizza();
   }, []);
   return (
     <fetchAPI.Provider

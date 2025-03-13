@@ -1,9 +1,10 @@
-import { ListGroupItem, Card, ListGroup, Col } from "react-bootstrap";
+import { ListGroupItem, Card, ListGroup, Col, CardText } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import React from "react";
 
 const CardPizza = ({ listapizzas, agregarpizza }) => {
   if (!listapizzas) {
-    console.log("listapizzas está vacío o undefined");
+    console.log("listapizzas es undefined");
     return <p>Cargando...</p>;
   }
 
@@ -22,6 +23,10 @@ const CardPizza = ({ listapizzas, agregarpizza }) => {
               </Card.Body>
               <ListGroup className="list-group-flush">
                 <ListGroupItem>
+                  <Card.Title>Ingredientes</Card.Title>
+                  <CardText>{pizza.desc}</CardText>
+                </ListGroupItem>
+                <ListGroupItem>
                   <ul>
                     {pizza.ingredients.map((ingrediente) => (
                       <li key={ingrediente}>{ingrediente}</li>
@@ -37,9 +42,12 @@ const CardPizza = ({ listapizzas, agregarpizza }) => {
                 >
                   Agregar al carro
                 </Card.Link>
-                <Card.Link className="btn btn-primary text-decoration-none">
+                <Link
+                  to={`/pizzas/${pizza.id}`} // Redirige a la ruta correspondiente
+                  className="btn btn-primary text-decoration-none"
+                >
                   Ver más
-                </Card.Link>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
@@ -56,6 +64,10 @@ const CardPizza = ({ listapizzas, agregarpizza }) => {
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>
+              <Card.Title>Ingredientes</Card.Title>
+              <CardText>{listapizzas.desc}</CardText>
+            </ListGroupItem>
+            <ListGroupItem>
               <ul>
                 {listapizzas.ingredients.map((ingrediente) => (
                   <li key={ingrediente}>{ingrediente}</li>
@@ -71,9 +83,12 @@ const CardPizza = ({ listapizzas, agregarpizza }) => {
             >
               Agregar al carro
             </Card.Link>
-            <Card.Link className="btn btn-primary text-decoration-none">
+            <Link
+              to={`/pizzas/${listapizzas.id}`} // Redirige a la ruta correspondiente
+              className="btn btn-primary text-decoration-none"
+            >
               Ver más
-            </Card.Link>
+            </Link>
           </Card.Body>
         </Card>
       </Col>
