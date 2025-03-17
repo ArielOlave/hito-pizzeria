@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <>
       <Navbar
-        className="justify-content-center fixed-bottom"
+        className="justify-content-center"
         expand="lg"
         bg="dark"
         data-bs-theme="dark"

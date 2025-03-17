@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { usarCart } from "../context/cartContext";
+import { usarUsuario } from "../context/UserContext";
 const Carrito = () => {
+  const { token } = usarUsuario();
   const { listacarrito, agregarpizza, restarpizza, total } = usarCart();
   return (
     <>
@@ -34,7 +35,9 @@ const Carrito = () => {
               <span>
                 <strong>Total : {total} </strong>
               </span>
-              <button className="btn btn-primary">Comprar</button>
+              <button className="btn btn-primary" disabled={!token}>
+                Comprar
+              </button>
             </div>
           </Col>
         </Row>

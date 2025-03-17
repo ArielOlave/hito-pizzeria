@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-
+import { Navigate } from "react-router-dom";
+import { usarUsuario } from "../context/UserContext";
 const Profile = () => {
+  const { token } = usarUsuario();
+  if (token == true) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <>
       <Container className="p-2">

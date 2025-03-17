@@ -11,29 +11,33 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Carrito from "./pages/Cart";
 import PreviewCart from "./components/utils/previewCart";
+import { UserProvider } from "./context/UserContext";
 function App() {
   return (
     <>
       <CartProvider>
-        <Navbar></Navbar>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/pizzas/:id"
-            element={
-              <RutaProtegida isAuthenticated={true}>
-                <Pizza />
-              </RutaProtegida>
-            }
-          />
-          <Route path="/cart" element={<Carrito />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <UserProvider>
+          <Navbar></Navbar>
 
-        <PreviewCart></PreviewCart>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/pizzas/:id"
+              element={
+                <RutaProtegida isAuthenticated={true}>
+                  <Pizza />
+                </RutaProtegida>
+              }
+            />
+            <Route path="/cart" element={<Carrito />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+
+          <PreviewCart></PreviewCart>
+        </UserProvider>
       </CartProvider>
 
       <Footer></Footer>

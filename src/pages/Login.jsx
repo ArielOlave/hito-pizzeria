@@ -2,7 +2,10 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { usarUsuario } from "../context/UserContext";
 const Login = () => {
+  const { token } = usarUsuario();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(true);
@@ -24,6 +27,11 @@ const Login = () => {
       handleClose();
     }
     console.log(mail, password);
+  }
+  {
+    if (token) {
+      return <Navigate to="/" />;
+    }
   }
   return (
     <>

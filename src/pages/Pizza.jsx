@@ -3,6 +3,7 @@ import { usarFetch } from "../context/fetchHomePizzaContext";
 import { usarCart } from "../context/cartContext";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
 const Pizza = () => {
   const { id } = useParams();
   const { pizza, obtenerPizza } = usarFetch();
@@ -12,11 +13,18 @@ const Pizza = () => {
   }, [id, obtenerPizza]);
   return (
     <>
-      {pizza ? (
-        <CardPizza listapizzas={pizza} agregarpizza={agregarpizza}></CardPizza>
-      ) : (
-        <p>Pizza no encontrada</p>
-      )}
+      <Container className="p-2">
+        <Row className="text-center mx-auto">
+          {pizza ? (
+            <CardPizza
+              listapizzas={pizza}
+              agregarpizza={agregarpizza}
+            ></CardPizza>
+          ) : (
+            <p>Pizza no encontrada</p>
+          )}
+        </Row>
+      </Container>
     </>
   );
 };

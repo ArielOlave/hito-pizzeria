@@ -2,23 +2,14 @@ import { Container, Nav, Navbar, NavbarBrand } from "react-bootstrap";
 import "../styles/Navbar.css";
 import PreviewCart from "./previewCart";
 import { Link } from "react-router-dom";
-const profile = document.getElementById("Profile");
-const logout = document.getElementById("Logout");
-const login = document.getElementById("Login");
-const register = document.getElementById("Register");
+import { usarUsuario } from "../../context/UserContext";
 
 const Menu = () => {
-  const token = false;
-  if (token) {
-    profile.classList.remove("d-none");
-    logout.classList.remove("d-none");
-  } else if (token) {
-    login.className = " d-none";
-    register.className = " d-none";
-  }
+  const { token, logout } = usarUsuario();
+
   return (
     <>
-      <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+      <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="fixed-top">
         <Container>
           <NavbarBrand>
             <Link className="text-decoration-none text-white" to="/">
@@ -35,42 +26,42 @@ const Menu = () => {
               >
                 Home
               </Nav.Link>
+              {token ? (
+                <>
+                  <Nav.Link
+                    className="btn1"
+                    to="/profile"
+                    as={Link}
+                    id="Profile"
+                  >
+                    Profile
+                  </Nav.Link>
 
-              <Nav.Link
-                className="btn1 d-none"
-                to="/profile"
-                as={Link}
-                id="Profile"
-              >
-                Profile
-              </Nav.Link>
+                  <Nav.Link className="btn1" onClick={logout} id="Logout">
+                    Logout
+                  </Nav.Link>
+                </>
+              ) : (
+                <>
+                  <Nav.Link
+                    className="text-decoration-none text-white"
+                    to="/login"
+                    as={Link}
+                    id="Login"
+                  >
+                    Login
+                  </Nav.Link>
 
-              <Nav.Link
-                className="btn1 d-none"
-                to="/logout"
-                as={Link}
-                id="Logout"
-              >
-                Logout
-              </Nav.Link>
-
-              <Nav.Link
-                className="text-decoration-none text-white"
-                to="/login"
-                as={Link}
-                id="Login"
-              >
-                Login
-              </Nav.Link>
-
-              <Nav.Link
-                className="text-decoration-none text-white"
-                to="/register"
-                as={Link}
-                id="Register"
-              >
-                Registrar
-              </Nav.Link>
+                  <Nav.Link
+                    className="text-decoration-none text-white"
+                    to="/register"
+                    as={Link}
+                    id="Register"
+                  >
+                    Registrar
+                  </Nav.Link>
+                </>
+              )}
             </Nav>
             <PreviewCart></PreviewCart>
           </Navbar.Collapse>

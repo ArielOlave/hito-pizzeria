@@ -84,10 +84,10 @@ const CardPizza = ({ listapizzas, agregarpizza }) => {
               Agregar al carro
             </Card.Link>
             <Link
-              to={`/pizzas/${listapizzas.id}`} // Redirige a la ruta correspondiente
+              to={`/`} // Redirige a la ruta correspondiente
               className="btn btn-primary text-decoration-none"
             >
-              Ver más
+              Volver
             </Link>
           </Card.Body>
         </Card>
