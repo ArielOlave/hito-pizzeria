@@ -1,18 +1,20 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { usarUsuario } from "../context/UserContext";
+
 const Login = () => {
-  const { token } = usarUsuario();
+  const { login, token } = usarUsuario();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  function handleSumbit(e) {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!mail.trim() || !password.trim()) {
       alert("Datos vacios");
@@ -20,19 +22,13 @@ const Login = () => {
     if (!mailRegex.test(mail)) {
       alert("Correo electrónico no válido");
       return;
-    } else {
-      alert("Ingresado correctamente con el correo: " + mail);
-      setMail("");
-      setPassword("");
-      handleClose();
     }
-    console.log(mail, password);
-  }
-  {
-    if (token) {
-      return <Navigate to="/" />;
+    try {
+      await login(mail, password);
+    } catch (error) {
+      alert("Error al iniciar sesion, verifica los datos ingresados");
     }
-  }
+  };
   return (
     <>
       <Modal
@@ -67,7 +63,7 @@ const Login = () => {
           <Button variant="secondary" to="/" as={Link}>
             Cerrar
           </Button>
-          <Button variant="primary" type="submit" onClick={handleSumbit}>
+          <Button variant="primary" type="submit" onClick={handleLogin}>
             Guardar
           </Button>
         </Modal.Footer>

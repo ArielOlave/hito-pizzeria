@@ -3,7 +3,8 @@ import { usarCart } from "../context/cartContext";
 import { usarUsuario } from "../context/UserContext";
 const Carrito = () => {
   const { token } = usarUsuario();
-  const { listacarrito, agregarpizza, restarpizza, total } = usarCart();
+  const { listacarrito, agregarpizza, restarpizza, total, enviarCarrito } =
+    usarCart();
   return (
     <>
       <Container>
@@ -35,7 +36,11 @@ const Carrito = () => {
               <span>
                 <strong>Total : {total} </strong>
               </span>
-              <button className="btn btn-primary" disabled={!token}>
+              <button
+                className="btn btn-primary"
+                disabled={!token || listacarrito.length === 0}
+                onClick={enviarCarrito}
+              >
                 Comprar
               </button>
             </div>

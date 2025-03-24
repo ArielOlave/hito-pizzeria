@@ -4,8 +4,9 @@ import { Button, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { usarUsuario } from "../context/UserContext";
+
 const Register = () => {
-  const { token } = usarUsuario();
+  const { register, token } = usarUsuario();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -13,7 +14,8 @@ const Register = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  function handleSumbit(e) {
+
+  const handleSumbit = async (e) => {
     e.preventDefault();
     if (!mail.trim() || !password.trim()) {
       alert("Datos vacios");
@@ -23,15 +25,20 @@ const Register = () => {
       return;
     } else if (password !== password2) {
       alert("Las contraseñas no coinciden");
-    } else {
-      alert("Registrado correctamente con el correo: " + mail);
+      return;
+    }
+
+    try {
+      await register(mail, password);
       setMail("");
       setPassword("");
       handleClose();
+    } catch (error) {
+      alert("ha ocurrido un error al registrar al usuario ", error);
     }
 
     console.log(mail, password);
-  }
+  };
 
   if (token) {
     return <Navigate to="/" />;
@@ -66,8 +73,8 @@ const Register = () => {
               type="password"
               id="password"
             />
-            <Form.Label htmlFor="password">Confirmar contraseña</Form.Label>
-            <Form.Label htmlFor="password2">Contraseña</Form.Label>
+            <Form.Label htmlFor="password2">Confirmar contraseña</Form.Label>
+
             <Form.Control
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}

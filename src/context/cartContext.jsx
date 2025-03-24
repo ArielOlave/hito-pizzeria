@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import api from "../navigation/axiosConfig.";
 
 const Cartcontext = createContext();
 
@@ -32,9 +33,22 @@ export const CartProvider = ({ children }) => {
     0
   );
 
+  const enviarCarrito = async () => {
+    try {
+      const response = await api.post("/api/checkouts", {
+        cart: listacarrito,
+      });
+      alert("compra realizada con exito!");
+      setListacarrito([]);
+    } catch (error) {
+      alert("se ha producido un error");
+      console.log("Error al realizar la compra ", error);
+    }
+  };
+
   return (
     <Cartcontext.Provider
-      value={{ listacarrito, agregarpizza, restarpizza, total }}
+      value={{ listacarrito, enviarCarrito, agregarpizza, restarpizza, total }}
     >
       {children}
     </Cartcontext.Provider>
